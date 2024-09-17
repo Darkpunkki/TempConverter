@@ -6,6 +6,10 @@ pipeline {
         GIT_CREDENTIALS = credentials('Darkpunkki')
     }
 
+    tools {
+        git 'Default' // Ensure Jenkins uses the correct Git tool
+    }
+
     stages {
         stage('Checkout') {
             steps {
