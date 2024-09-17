@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         PATH = "${env.PATH};C:\\Windows\\System32"
-        GIT_CREDENTIALS = credentials('Darkpunkki')
     }
 
     tools {
@@ -13,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', credentialsId: 'Darkpunkki', url: 'https://github.com/Darkpunkki/TempConverter.git'
+                git branch: 'master', url: 'https://github.com/Darkpunkki/TempConverter.git'
             }
         }
 
