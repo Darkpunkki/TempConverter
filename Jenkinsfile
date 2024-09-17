@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', credentialsId: 'ADirin', url: 'https://github.com/Darkpunkki/TempConverter.git'
+                git branch: 'master', credentialsId: 'Darkpunkki', url: 'https://github.com/Darkpunkki/TempConverter.git'
             }
         }
 
