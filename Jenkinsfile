@@ -1,35 +1,36 @@
 pipeline {
-    agent any
+    agent any // IN THE LECTURE I WILL EXPLAIN THE SCRIPT AND THE WORKFLOW
 
     environment {
-        PATH = "${env.PATH};C:\\Windows\\System32"
+        // Define Docker Hub credentials ID
+        DOCKERHUB_CREDENTIALS_ID = 'darkunk'
+        // Define Docker Hub repository name
+        DOCKERHUB_REPO = 'darkunk/tempconverter'
+        // Define Docker image tag
+        DOCKER_IMAGE_TAG = 'latest'
     }
-
-    tools {
-        git 'Default' // Ensure Jenkins uses the correct Git tool
-    }
-
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/Darkpunkki/TempConverter.git'
+                // Checkout code from Git repository
+                git 'https://github.com/Darkpunkki/TempConverter.git'
             }
         }
-
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                bat 'mvn clean install'
+                // Build Docker image
+                script {
+                    docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
+                }
             }
         }
-
-        stage('Test') {
+        stage('Push Docker Image to Docker Hub') {
             steps {
-                bat 'mvn test'
-            }
-            post {
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    jacoco execPattern: '**/target/jacoco.exec'
+                // Push Docker image to Docker Hub
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS_ID) {
+                        docker.image("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}").push()
+                    }
                 }
             }
         }
