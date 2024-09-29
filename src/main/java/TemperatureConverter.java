@@ -50,4 +50,21 @@ public class TemperatureConverter {
     public static double kelvinToFah(double kel) {
         return Math.round((kel-273.15) * (9/5) + 32);
     }
+
+    public static void main(String[] args) {
+        TemperatureConverter converter = new TemperatureConverter();
+
+        // Example usage of the conversion methods
+        double fahrenheit = 100.0;
+        double celsius = converter.fahrenheitToCelsius(fahrenheit);
+        System.out.println(fahrenheit + "°F is " + celsius + "°C");
+
+        float kelvin = 300.0f;
+        float celsiusFromKelvin = converter.kelvinToCel(kelvin);
+        System.out.println(kelvin + "K is " + celsiusFromKelvin + "°C");
+
+        double celsiusTemp = 40.0;
+        boolean isExtreme = converter.isExtremeTemperature(celsiusTemp);
+        System.out.println("Is " + celsiusTemp + "°C an extreme temperature? " + isExtreme);
+    }
 }
