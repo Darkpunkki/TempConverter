@@ -40,4 +40,14 @@ public class TemperatureConverter {
     public boolean isExtremeTemperature(double celsius) {
         return celsius < -40 || celsius > 50;
     }
+
+    /**
+     * Converts Kelvin to Fahrenheit.
+     *
+     * @param kel The temperature in Kelvin.
+     * @return The temperature in Fahrenheit.
+     */
+    public static double kelvinToFah(double kel) {
+        return Math.round((kel-273.15) * (9/5) + 32);
+    }
 }
