@@ -5,7 +5,7 @@ pipeline {
         // Define Docker Hub credentials ID
         DOCKERHUB_CREDENTIALS_ID = 'darkunk'
         // Define Docker Hub repository name
-        DOCKERHUB_REPO = 'darkunk/tempconverter'
+        DOCKERHUB_REPO = 'darkpunk/tempconverter'
         // Define Docker image tag
         DOCKER_IMAGE_TAG = 'latest'
     }
